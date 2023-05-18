@@ -1,0 +1,50 @@
+'''Criar com Python uma lista para armazenar esses resultados
+(e outros resultados que quiser no mesmo formato, o código
+precisa funcionar para qualquer lista que seja inserida nesse
+formato) e depois uma função que busca o candidato de
+acordo com os critérios digitados pelo usuário.'''
+
+'''Uma startup está desenvolvendo um aplicativo que verifica a compatibilidade
+de um candidato com uma vaga de acordo com seu resultado nas etapas do
+processo seletivo'''
+
+print ('-*-'*38)
+
+def buscarCandidatos(lista_candidatos, nota_minima_e, nota_minima_t, nota_minima_p, nota_minima_s):
+    candidatos_atendem_criterios = []
+    for candidato in lista_candidatos:
+        if (candidato['nota_e'] >= nota_minima_e and
+            candidato['nota_t'] >= nota_minima_t and
+            candidato['nota_p'] >= nota_minima_p and
+            candidato['nota_s'] >= nota_minima_s):
+            candidatos_atendem_criterios.append(candidato)
+    return candidatos_atendem_criterios
+
+# lista de candidatos
+lista_candidatos = [
+    {'nome': 'Aline', 'nota_e': 9, 'nota_t': 8, 'nota_p': 7, 'nota_s': 5},
+    {'nome': 'Mayara', 'nota_e': 9, 'nota_t': 5, 'nota_p': 8, 'nota_s': 6},
+    {'nome': 'Lila', 'nota_e': 6, 'nota_t': 7, 'nota_p': 5, 'nota_s': 9},
+    {'nome': 'Jão', 'nota_e': 5, 'nota_t': 6, 'nota_p': 4, 'nota_s': 5},
+    {'nome': 'Afonso', 'nota_e': 3, 'nota_t': 2, 'nota_p': 9, 'nota_s': 9}
+]
+
+# Solicitar critérios ao usuário
+nota_minima_e = int(input("Digite a nota mínima em entrevista: "))
+nota_minima_t = int(input("Digite a nota mínima em teste teórico: "))
+nota_minima_p = int(input("Digite a nota mínima em teste prático: "))
+nota_minima_s = int(input("Digite a nota mínima em avaliação de soft skills: "))
+
+# Buscar candidatos que atendem aos critérios
+candidatos_encontrados = buscarCandidatos(lista_candidatos, nota_minima_e, nota_minima_t, nota_minima_p, nota_minima_s)
+print ('---'*38)
+
+# Exibir resultados
+if len(candidatos_encontrados) > 0:
+    print("Os seguintes candidatos atendem aos critérios:")
+    for candidato in candidatos_encontrados:
+        print(candidato['nome'])
+else:
+    print("Nenhum candidato atende aos critérios.")
+    print('Nota mínima não alcançada')
+print ('-*-'*38)
